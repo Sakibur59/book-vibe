@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData, useParams } from "react-router";
+import { toast } from "react-toastify";
 
 const BookDetails = () => {
   const {bookId:bookParamsId} = useParams();
   const books = useLoaderData();
 
   const expectedBook = books.find((book) => book.bookId == bookParamsId);
+
+  const [storedBook, setStoredBook] = useState([])
+
+  const handleStoredBook = (currentBook) => {
+      const isExistBook = storedBook.find(book => book.bookId === currentBook.bookId);
+
+      if(isExistBook){
+        toast.error("The book is already Exist");
+      }
+      else{
+        setStoredBook([...storedBook,currentBook])
+      }
+  }
 
   const {bookId,bookName,author,image,review,totalPages,rating,category,tags,publisher,yearOfPublishing} = expectedBook;
   return (
@@ -42,8 +56,8 @@ const BookDetails = () => {
             </div>
             <div className="flex items-center justify-center gap-2">
 
-          <button className="btn ">red</button>
-          <button className="btn btn-primary">Wishlist</button>
+          <button className="btn" onClick={()=>handleStoredBook(expectedBook)}>Mark As Read</button>
+          <button className="btn btn-primary">Add to Wishlist</button>
             </div>
         </div>
       </div>
