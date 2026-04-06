@@ -2,14 +2,16 @@ import React, { useContext } from 'react';
 import { bookContext } from '../../Components/BookContext/BookProvider';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import ListedReadBooks from '../../Components/HomePage/ListedBooks/ListedReadBooks';
+import ListedWishlistBooks from '../../Components/HomePage/ListedBooks/ListedWishlistBooks';
 
 const Books = () => {
 
-    const {storedBooks,wishlist} = useContext(bookContext);
+    const {storedBooks} = useContext(bookContext);
     console.log(storedBooks);
 
     return (
-        <div className='max-w-300 mx-auto'>
+        <div className='max-w-300 mx-auto my-5'>
              <Tabs>
     <TabList>
       <Tab>Read List</Tab>
@@ -17,10 +19,10 @@ const Books = () => {
     </TabList>
 
     <TabPanel>
-      <h2>Read List {storedBooks.length}</h2>
+      <ListedReadBooks></ListedReadBooks>
     </TabPanel>
     <TabPanel>
-      <h2>Wishlist</h2>
+      <ListedWishlistBooks></ListedWishlistBooks>
     </TabPanel>
   </Tabs>
         </div>
