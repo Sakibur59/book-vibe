@@ -4,24 +4,24 @@ import { toast } from "react-toastify";
 export const bookContext = createContext();
 
 const BookProvider = ({ children }) => {
-  const [storedBooks, setStoredBooks] = useState([]);
+  const [readList, setReadList] = useState([]);
 
   const [wishlist ,setWishlist] = useState([])
 
   const handleStoredBook = (currentBook) => {
-    const isExistBook = storedBooks.find(
+    const isExistBook = readList.find(
       (book) => book.bookId === currentBook.bookId,
     );
 
     if (isExistBook) {
       toast.error("The book is already Mark as read");
     } else {
-      setStoredBooks([...storedBooks, currentBook]);
+      setReadList([...readList,currentBook]);
       toast.success(`${currentBook.bookName} is added to Make as read`);
     }
   };
   const handleWishlist = (currentBook) => {
-    const isExistInReadList = storedBooks.find(
+    const isExistInReadList = readList.find(
       (book) => book.bookId === currentBook.bookId,
     );
 
@@ -43,8 +43,8 @@ const BookProvider = ({ children }) => {
   };
 
   const data = {
-    setStoredBooks,
-    storedBooks,
+    setReadList,
+    readList,
     handleStoredBook,
     wishlist,
     setWishlist,

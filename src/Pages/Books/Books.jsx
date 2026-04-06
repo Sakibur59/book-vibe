@@ -7,8 +7,8 @@ import ListedWishlistBooks from '../../Components/HomePage/ListedBooks/ListedWis
 
 const Books = () => {
 
-    const {storedBooks} = useContext(bookContext);
-    console.log(storedBooks);
+    // const {readList} = useContext(bookContext);
+    // console.log(readList);
 
     return (
         <div className='max-w-300 mx-auto my-5'>
