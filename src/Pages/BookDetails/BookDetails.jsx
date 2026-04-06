@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext} from "react";
 import { useLoaderData, useParams } from "react-router";
-import { toast } from "react-toastify";
+import { bookContext } from "../../Components/BookContext/BookProvider";
+
 
 const BookDetails = () => {
   const {bookId:bookParamsId} = useParams();
@@ -8,18 +9,7 @@ const BookDetails = () => {
 
   const expectedBook = books.find((book) => book.bookId == bookParamsId);
 
-  const [storedBook, setStoredBook] = useState([])
-
-  const handleStoredBook = (currentBook) => {
-      const isExistBook = storedBook.find(book => book.bookId === currentBook.bookId);
-
-      if(isExistBook){
-        toast.error("The book is already Exist");
-      }
-      else{
-        setStoredBook([...storedBook,currentBook])
-      }
-  }
+  const {handleStoredBook} = useContext(bookContext);
 
   const {bookId,bookName,author,image,review,totalPages,rating,category,tags,publisher,yearOfPublishing} = expectedBook;
   return (
