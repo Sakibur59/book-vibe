@@ -17,7 +17,7 @@ const ListedReadBooks = ({sortingType}) => {
         setFilterReadList(sortData);
       }
     }
-  })
+  },[sortingType,readList])
 
 
     if(filterReadList.length === 0) {
